@@ -1,16 +1,16 @@
-FROM continuumio/anaconda3:5.2.0
+FROM continuumio/anaconda3:5.3.0
 
 USER root
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt update -qq \
- && apt upgrade -y\
- && apt install -y --no-install-recommends -y \
- 	# opencv3
+RUN apt-get update -qq \
+ && apt-get upgrade -y \
+ && apt-get install --no-install-recommends -y \
+	# opencv3
 	libgtk2.0-0 \
- && apt clean \
+ && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-ENV NOTEBOOK_DIR=~ \
+ENV NOTEBOOK_DIR=/src/notebooks \
 	NOTEBOOK_IP=0.0.0.0 \
 	NOTEBOOK_PORT=8888
 
@@ -18,7 +18,7 @@ RUN conda install -y --quiet \
 	jupyter \
 	Pillow \
  && conda config --add channels conda-forge \
- 	# opencv3 install
+	# opencv3 install
  && conda install -c menpo opencv3 \
  && conda clean -tipsy
 
@@ -29,3 +29,4 @@ CMD jupyter lab \
 	--NotebookApp.token='' \
 	--no-browser \
 	--allow-root
+
