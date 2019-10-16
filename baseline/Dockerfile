@@ -1,6 +1,7 @@
 FROM continuumio/anaconda3:5.3.0
 
 USER root
+
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -qq \
  && apt-get upgrade -y \
