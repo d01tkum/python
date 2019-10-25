@@ -1,17 +1,22 @@
 FROM continuumio/anaconda3:5.3.0
+MAINTAINER d01tkum
 
-USER root
+ENV USER d01tkum
+RUN useradd -m ${USER}
+RUN gpasswd -a ${USER} sudo
+RUN echo "${USER}:hoge" | chpasswd
+
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update -qq \
- && apt-get upgrade -y \
- && apt-get install --no-install-recommends -y \
+RUN apt update -qq \
+ && apt upgrade -y \
+ && apt install --no-install-recommends -y \
 	# opencv3
 	libgtk2.0-0 \
- && apt-get clean \
+ && apt clean \
  && rm -rf /var/lib/apt/lists/*
 
-ENV NOTEBOOK_DIR=/src/notebooks \
+ENV NOTEBOOK_DIR=/src/workspace \
 	NOTEBOOK_IP=0.0.0.0 \
 	NOTEBOOK_PORT=8888
 
