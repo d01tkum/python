@@ -1,11 +1,6 @@
 FROM continuumio/anaconda3:5.3.0
 MAINTAINER d01tkum
 
-ENV USER d01tkum
-RUN useradd -m ${USER}
-RUN gpasswd -a ${USER} sudo
-RUN echo "${USER}:hoge" | chpasswd
-
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt update -qq \
