@@ -3,20 +3,20 @@ MAINTAINER d01tkum
 
 # Add user
 ENV USER=d01tkum
-ENV HOME=/home/${USER}
-ENV SHELL /bin/bash
+ENV SHELL=/bin/bash
 
 RUN useradd -m ${USER} \
  && gpasswd -a ${USER} sudo \
  && echo "${USER}:hoge" | chpasswd \
- && su ${USER} \
- && bash
 
 RUN apt update -qq \
  && apt upgrade -y \
  && apt install --no-install-recommends -y libgtk2.0-0 \
  && apt clean \
  && rm -rf /var/lib/apt/lists/*
+
+RUN su ${USER} \
+ && bash
 
 ENV NOTEBOOK_DIR=/src/Workspace \
 	NOTEBOOK_IP=0.0.0.0 \
