@@ -2,12 +2,12 @@ FROM continuumio/anaconda3:5.3.0
 MAINTAINER d01tkum
 
 # Add user
-ENV USER=d01tkum
-ENV SHELL=/bin/bash
-
-RUN useradd -m ${USER} \
- && gpasswd -a ${USER} sudo \
- && echo "${USER}:hoge" | chpasswd
+#ENV USER=d01tkum
+#ENV SHELL=/bin/bash
+#
+#RUN useradd -m ${USER} \
+# && gpasswd -a ${USER} sudo \
+# && echo "${USER}:hoge" | chpasswd
 
 RUN apt update -qq \
  && apt upgrade -y \
@@ -15,8 +15,8 @@ RUN apt update -qq \
  && apt clean \
  && rm -rf /var/lib/apt/lists/*
 
-RUN su ${USER} \
- && bash
+#RUN su ${USER} \
+# && bash
 
 ENV NOTEBOOK_DIR=/src/Workspace \
 	NOTEBOOK_IP=0.0.0.0 \
