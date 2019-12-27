@@ -7,7 +7,7 @@ ENV SHELL=/bin/bash
 
 RUN useradd -m ${USER} \
  && gpasswd -a ${USER} sudo \
- && echo "${USER}:hoge" | chpasswd \
+ && echo "${USER}:hoge" | chpasswd
 
 RUN apt update -qq \
  && apt upgrade -y \
