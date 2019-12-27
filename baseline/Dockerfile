@@ -1,7 +1,6 @@
 FROM continuumio/anaconda3:5.3.0
 MAINTAINER d01tkum
 
-
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt update -qq \
  && apt upgrade -y \
