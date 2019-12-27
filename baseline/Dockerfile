@@ -6,10 +6,11 @@ ENV USER=d01tkum
 ENV HOME=/home/${USER}
 ENV SHELL /bin/bash
 
-RUN useradd -m ${USER}
- && gpasswd -a ${USER} sudo
- && echo "${USER}:hoge" | chpasswd
- && su ${USER}
+RUN useradd -m ${USER} \
+ && gpasswd -a ${USER} sudo \
+ && echo "${USER}:hoge" | chpasswd \
+ && su ${USER} \
+ && bash
 
 RUN apt update -qq \
  && apt upgrade -y \
